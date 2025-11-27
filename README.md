@@ -14,4 +14,7 @@ La estructura del proyecto está organizada de la siguiente manera:
 * `01_Analisis_Exploratorio.ipynb`: Es el Jupyter Notebook con todo el código Python. **Este archivo documenta la Fase 1: Limpieza y Transformación de Datos**.
 * `02_Analisis_Visual.ipynb`: Es el Jupyter notebook que contiene la **Fase 2: Análisis Exploratorio (EDA), visualizaciones** y validación de hipótesis.
 - - -
+* `dashboard.py`: Aplicación interactiva desarrollada con **Streamlit** que presenta visualizaciones dinámicas del análisis de donación de órganos. Incluye gráficos interactivos, filtros por región y tipo de sangre, y métricas clave del dataset. Se ejecuta con el comando `streamlit run dashboard.py`.
+* `requirements.txt`: Archivo que lista todas las **dependencias de Python** necesarias para ejecutar el proyecto (streamlit, pandas, matplotlib, seaborn, numpy, scipy). Permite instalar todas las librerías requeridas con `pip install -r requirements.txt`.
+- - -
 * `README.md`: Este archivo, que sirve como guía principal del repositorio.
