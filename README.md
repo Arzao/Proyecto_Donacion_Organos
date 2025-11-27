@@ -12,6 +12,6 @@ La estructura del proyecto está organizada de la siguiente manera:
     * `03_Analisis_Hallazgos.pdf`: Es el reporte futuro con las **gráficas y conclusiones** del análisis.
 - - -
 * `01_Analisis_Exploratorio.ipynb`: Es el Jupyter Notebook con todo el código Python. **Este archivo documenta la Fase 1: Limpieza y Transformación de Datos**.
-* `02_Analisis_Visual.ipynb1`: Es el Jupyter notebook futuro que contendrá la **Fase 2: Análisis Exploratorio (EDA), visualizaciones** y validación de hipótesis).
+* `02_Analisis_Visual.ipynb1`: Es el Jupyter notebook futuro que contendrá la **Fase 2: Análisis Exploratorio (EDA), visualizaciones** y validación de hipótesis.
 - - -
 * `README.md`: Este archivo, que sirve como guía principal del repositorio.
