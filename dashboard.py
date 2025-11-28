@@ -118,8 +118,9 @@ try:
         options=tipos_donante
     )
     
-    # Filtro por entidad federativa
-    entidades = ['TODAS'] + sorted(df['ENTIDAD_FEDERATIVA'].unique())
+    # Filtro por entidad federativa (excluir DESCONOCIDO)
+    entidades_validas = df[df['ENTIDAD_FEDERATIVA'] != 'DESCONOCIDO']['ENTIDAD_FEDERATIVA'].unique()
+    entidades = ['TODAS'] + sorted(entidades_validas)
     entidad_seleccionada = st.sidebar.selectbox(
         "Entidad federativa:",
         options=entidades
@@ -325,10 +326,13 @@ try:
     with tab2:
         st.header("Análisis geográfico de donaciones")
         
+        # Filtrar registros con entidad federativa desconocida para análisis geográfico
+        df_geo = df_filtrado[df_filtrado['ENTIDAD_FEDERATIVA'] != 'DESCONOCIDO'].copy()
+        
         # Top 10 entidades
         st.subheader("Top 10 entidades con más donaciones")
         
-        top_10_entidades = df_filtrado['ENTIDAD_FEDERATIVA'].value_counts().head(10)
+        top_10_entidades = df_geo['ENTIDAD_FEDERATIVA'].value_counts().head(10)
         
         fig, ax = plt.subplots(figsize=(12, 6))
         bars = ax.barh(range(len(top_10_entidades)), top_10_entidades.values, color=COLORES[0])
@@ -354,7 +358,7 @@ try:
         with col1:
             st.subheader("Bottom 5 entidades")
             
-            bottom_5_entidades = df_filtrado['ENTIDAD_FEDERATIVA'].value_counts().tail(5)
+            bottom_5_entidades = df_geo['ENTIDAD_FEDERATIVA'].value_counts().tail(5)
             
             fig, ax = plt.subplots(figsize=(8, 5))
             bars = ax.bar(range(len(bottom_5_entidades)), bottom_5_entidades.values, color=COLORES[0])
@@ -377,7 +381,7 @@ try:
         with col2:
             st.subheader("Tipo de donante por entidad (Top 10)")
             
-            df_top10 = df_filtrado[df_filtrado['ENTIDAD_FEDERATIVA'].isin(top_10_entidades.index)]
+            df_top10 = df_geo[df_geo['ENTIDAD_FEDERATIVA'].isin(top_10_entidades.index)]
             
             proporcion = df_top10.groupby(['ENTIDAD_FEDERATIVA', 'TIPO_DONANTE']).size().unstack(fill_value=0)
             proporcion_norm = proporcion.div(proporcion.sum(axis=1), axis=0)
